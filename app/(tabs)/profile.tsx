@@ -1,6 +1,6 @@
+import { ThemedText } from "@/components/themed-text";
+import { ThemedView } from "@/components/themed-view";
 import { Image, Pressable, ScrollView } from "react-native";
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
 
 // All icons used were ascii alt codes from:
 // https://www.alt-codes.net/
@@ -93,7 +93,9 @@ export default function Profile() {
           </ThemedView>
           <ThemedView style={styles.subContainer}>
             <ThemedText style={styles.subtitle}>Member Since</ThemedText>
-            <ThemedText style={styles.subText}>&#x2665; Sep 10, 2017</ThemedText>
+            <ThemedText style={styles.subText}>
+              &#x2665; Sep 10, 2017
+            </ThemedText>
           </ThemedView>
         </ThemedView>
 
