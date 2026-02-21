@@ -1,14 +1,25 @@
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
-import { Image, Pressable, ScrollView } from "react-native";
+import { useColorScheme } from "@/hooks/use-color-scheme";
+import { Image, Pressable, ScrollView, StyleSheet } from "react-native";
 
 // All icons used were ascii alt codes from:
 // https://www.alt-codes.net/
 // https://graphemica.com/
 
+let bgColor;
+let containerbgColor;
+let textColor;
+
 export default function Profile() {
+  const colorScheme = useColorScheme();
+  bgColor = colorScheme === "dark" ? "#1C1D22" : "#f2f3f5";
+  containerbgColor = colorScheme === "dark" ? "#27272F" : "#ffffff";
+  textColor = colorScheme === "dark" ? "#C7C8CD" : "#060607";
+  const styles = createStyles(bgColor, textColor, containerbgColor);
+
   return (
-    <ThemedView style={{ flex: 1 }}>
+    <ThemedView style={{ flex: 1, backgroundColor: bgColor }}>
       {/* scrollable component that wraps everything */}
       {/* https://reactnative.dev/docs/ScrollView */}
       <ScrollView
@@ -147,252 +158,266 @@ export default function Profile() {
   );
 }
 
-import { StyleSheet } from "react-native";
+const createStyles = (
+  bgColor: string,
+  textColor: string,
+  containerbgColor: string,
+) =>
+  StyleSheet.create({
+    Banner: {
+      height: 180,
+      width: "100%",
+      marginBottom: 18,
+    },
 
-const styles = StyleSheet.create({
-  Banner: {
-    height: 180,
-    width: "100%",
-    marginBottom: 18,
-  },
+    bannerImage: {
+      width: "100%",
+      height: "100%",
+    },
 
-  bannerImage: {
-    width: "100%",
-    height: "100%",
-  },
+    avatarWrapper: {
+      position: "absolute",
+      top: 120,
+      left: 25,
+      zIndex: 10,
+      borderRadius: 50,
+      borderWidth: 4,
+      borderColor: containerbgColor,
+    },
 
-  avatarWrapper: {
-    position: "absolute",
-    top: 120,
-    left: 25,
-    zIndex: 10,
-  },
+    avatar: {
+      width: 90,
+      height: 90,
+      borderRadius: 50,
+    },
 
-  avatar: {
-    width: 90,
-    height: 90,
-    borderRadius: 50,
-    borderWidth: 4,
-    borderColor: "#161415",
-    backgroundColor: "#333",
-  },
+    alertButton: {
+      borderRadius: 15,
+      backgroundColor: "#b22222",
+      paddingHorizontal: 12,
+      paddingVertical: 8,
+    },
 
-  alertButton: {
-    borderRadius: 15,
-    backgroundColor: "#b22222",
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-  },
+    card: {
+      borderWidth: 2,
+      borderRadius: 14,
+      padding: 16,
+      gap: 2,
+    },
 
-  card: {
-    borderWidth: 2,
-    borderRadius: 14,
-    padding: 16,
-    gap: 2,
-  },
+    container: {
+      flex: 1,
+      width: "100%",
+      backgroundColor: bgColor,
+    },
 
-  container: {
-    flex: 1,
-    width: "100%",
-    backgroundColor: "#161415",
-  },
+    containerContent: {
+      alignItems: "center",
+    },
 
-  containerContent: {
-    alignItems: "center",
-  },
+    subContainer: {
+      gap: 8,
+      backgroundColor: containerbgColor,
+    },
 
-  subContainer: {
-    gap: 8,
-  },
+    subtitle: {
+      color: textColor,
+      fontSize: 18,
+      fontWeight: 600,
+    },
 
-  subtitle: {
-    color: "#fefefe",
-    fontSize: 18,
-    fontWeight: 600,
-  },
+    subText: {
+      color: textColor,
+      fontSize: 16,
+    },
 
-  subText: {
-    color: "#fefefe",
-    fontSize: 16,
-  },
+    editProfile: {
+      height: "5%",
+      width: "90%",
+      borderRadius: 25,
+      backgroundColor: containerbgColor,
+      justifyContent: "center",
+      alignItems: "center",
+      margin: 10,
+    },
 
-  editProfile: {
-    height: "5%",
-    width: "90%",
-    borderRadius: 25,
-    backgroundColor: "#67666B",
-    justifyContent: "center",
-    alignItems: "center",
-    margin: 10,
-  },
+    orbsBar: {
+      width: "90%",
+      borderRadius: 20,
+      backgroundColor: containerbgColor,
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      paddingHorizontal: 20,
+      paddingVertical: 15,
+      margin: 10,
+    },
 
-  orbsBar: {
-    width: "90%",
-    borderRadius: 20,
-    backgroundColor: "#0A0A0A",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingHorizontal: 20,
-    paddingVertical: 15,
-    margin: 10,
-  },
+    orbsAmount: {
+      flexDirection: "row",
+      alignItems: "center",
+      backgroundColor: bgColor,
+      paddingHorizontal: 12,
+      paddingVertical: 5,
+      borderRadius: 25,
+    },
 
-  orbsAmount: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#1E1E1E",
-    paddingHorizontal: 12,
-    paddingVertical: 5,
-    borderRadius: 25,
-  },
+    orbsText: {
+      color: textColor,
+      fontSize: 18,
+      fontWeight: "600",
+      marginLeft: 5,
+    },
+    orbsIcon: {
+      color: textColor,
+      fontSize: 25,
+      fontWeight: "600",
+    },
 
-  orbsText: {
-    color: "#fefefe",
-    fontSize: 18,
-    fontWeight: "600",
-    marginLeft: 5,
-  },
-  orbsIcon: {
-    color: "#fefefe",
-    fontSize: 25,
-    fontWeight: "600",
-  },
+    aboutMe: {
+      gap: 25,
+      width: "90%",
+      borderRadius: 20,
+      backgroundColor: containerbgColor,
+      padding: 20,
+      margin: 10,
+    },
 
-  aboutMe: {
-    gap: 25,
-    width: "90%",
-    borderRadius: 20,
-    backgroundColor: "#0A0A0A",
-    padding: 20,
-    margin: 10,
-  },
+    connections: {
+      width: "90%",
+      borderRadius: 20,
+      backgroundColor: containerbgColor,
+      padding: 20,
+      margin: 10,
+    },
 
-  connections: {
-    width: "90%",
-    borderRadius: 20,
-    backgroundColor: "#0A0A0A",
-    padding: 20,
-    margin: 10,
-  },
+    connectionItem: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      marginVertical: 18,
+      backgroundColor: containerbgColor,
+    },
 
-  connectionItem: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginVertical: 18,
-  },
+    connectionLeft: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: 10,
+      backgroundColor: containerbgColor,
+    },
 
-  connectionLeft: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10,
-  },
+    connectionName: {
+      color: textColor,
+      fontSize: 16,
+      fontWeight: "600",
+    },
 
-  connectionName: {
-    color: "#fefefe",
-    fontSize: 16,
-    fontWeight: "600",
-  },
+    verifiedBadge: {
+      width: 18,
+      height: 18,
+      borderRadius: 9,
+      backgroundColor: textColor,
+      alignItems: "center",
+      justifyContent: "center",
+    },
 
-  verifiedBadge: {
-    width: 18,
-    height: 18,
-    borderRadius: 9,
-    backgroundColor: "#fefefe",
-    alignItems: "center",
-    justifyContent: "center",
-  },
+    verifiedText: {
+      color: bgColor,
+      fontSize: 10,
+      fontWeight: "600",
+    },
 
-  verifiedText: {
-    color: "#1E1E1E",
-    fontSize: 10,
-    fontWeight: "600",
-  },
+    arrow: {
+      color: textColor,
+      fontSize: 20,
+    },
 
-  arrow: {
-    color: "#fefefe",
-    fontSize: 20,
-  },
+    appIcon: {
+      fontSize: 18,
+      color: textColor,
+    },
 
-  appIcon: {
-    fontSize: 18,
-  },
+    divider: {
+      height: 1,
+      backgroundColor: containerbgColor,
+      marginLeft: 35,
+    },
 
-  divider: {
-    height: 1,
-    backgroundColor: "#1E1E1E",
-    marginLeft: 35,
-  },
+    profileHeader: {
+      width: "90%",
+      marginBottom: 12,
+      gap: 8,
+      backgroundColor: bgColor,
+    },
 
-  profileHeader: {
-    width: "90%",
-    marginBottom: 12,
-    gap: 8,
-  },
+    headerContainer: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: 5,
+      marginTop: 25,
+      backgroundColor: bgColor,
+    },
 
-  headerContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 5,
-    marginTop: 25,
-  },
+    name: {
+      color: textColor,
+      fontSize: 26,
+      fontWeight: "700",
+    },
 
-  name: {
-    color: "#fefefe",
-    fontSize: 26,
-    fontWeight: "700",
-  },
+    dropDown: { color: textColor, fontSize: 25 },
 
-  dropDown: { color: "#bdbdbd", fontSize: 25 },
+    subHeaderContainer: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      backgroundColor: bgColor,
+    },
+    subHeaderText: {
+      color: textColor,
+      fontSize: 20,
+      fontWeight: "500",
+    },
 
-  subHeaderContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  subHeaderText: {
-    color: "#bdbdbd",
-    fontSize: 20,
-    fontWeight: "500",
-  },
+    badgeContainer: {
+      flexDirection: "row",
+      alignItems: "center",
+      backgroundColor: containerbgColor,
+      borderRadius: 12,
+      gap: 2,
+    },
 
-  badgeContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#060608",
-    borderRadius: 12,
-    gap: 2,
-  },
+    badge: {
+      padding: 8,
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: containerbgColor,
+      borderRadius: 12,
+    },
 
-  badge: {
-    padding: 8,
-    alignItems: "center",
-    justifyContent: "center",
-  },
+    badgeText: {
+      color: textColor,
+      fontSize: 16,
+    },
 
-  badgeText: {
-    color: "#fefefe",
-    fontSize: 16,
-  },
+    navigationBar: {
+      marginTop: 50,
+      height: "5%",
+      width: "100%",
+      flexDirection: "row",
+      justifyContent: "space-between",
+    },
 
-  navigationBar: {
-    marginTop: 50,
-    height: 70,
-    flexDirection: "row",
-  },
+    navigationItem: {
+      backgroundColor: containerbgColor,
+      height: "100%",
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+    },
 
-  navigationItem: {
-    backgroundColor: "#060608",
-    height: "100%",
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  navigationText: {
-    color: "#fefefe",
-    fontSize: 16,
-    fontWeight: "600",
-  },
-});
+    navigationText: {
+      color: textColor,
+      fontSize: 16,
+      fontWeight: "600",
+    },
+  });

@@ -16,7 +16,7 @@ let bgColor;
 let containerbgColor;
 let textColor;
 
-export default function settings() {
+export default function Settings() {
   const colorScheme = useColorScheme();
   const router = useRouter();
   bgColor = colorScheme === "dark" ? "#1C1D22" : "#f2f3f5";
