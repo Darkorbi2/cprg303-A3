@@ -1,14 +1,5 @@
-import { ThemedView } from '@/components/themed-view';
-import { Platform, StyleSheet } from 'react-native';
+import DiscordQuests from '@/components/DiscordQuests';
 
-export default function Quests() {
-  return (
-  <ThemedView>
-
-  </ThemedView>
-  );
+export default function QuestsScreen() {
+  return <DiscordQuests />;
 }
-
-const styles = StyleSheet.create({
-
-});
